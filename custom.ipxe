@@ -1,12 +1,21 @@
 #!ipxe
 ###
-### netboot.xyz-custom menu
+### netboot.xyz-custom menu example
 ###
 
-:start
-echo Hello world!
-sleep 10
+:custom
+clear custom_choice
+menu Cas zijn dingen
+item --gap option_three ${space} Sidero
+choose custom_choice || goto custom_exit
+echo ${cls}
+goto ${custom_choice}
 goto custom_exit
 
+:option_three
+echo Starting install
+chain http://10.5.124.2:8081/ipxe?uuid=${uuid}&mac=${net${idx}/mac:hexhyp}&domain=${domain}&hostname=${hostname}&serial=${serial}&arch=${buildarch} || goto custom
+
 :custom_exit
-exit 0
+chain utils.ipxe
+exit
