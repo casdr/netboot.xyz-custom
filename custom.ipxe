@@ -17,5 +17,4 @@ echo Starting install
 chain http://10.5.124.2:8081/ipxe?uuid=${uuid}&mac=${net${idx}/mac:hexhyp}&domain=${domain}&hostname=${hostname}&serial=${serial}&arch=${buildarch} || goto custom
 
 :custom_exit
-chain utils.ipxe
 exit
